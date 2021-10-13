@@ -1,0 +1,33 @@
+# Arief Wira Judithantyo
+# 064002100027
+
+print(30*"=")
+center = "Puisi".center(30)
+print(center)
+print(30*"=")
+
+judul = str(input('Masukkan judul puisi: ')) 
+filename = (('cetak puisi\%s.txt')%(judul)) 
+f = open(filename,'w') 
+f.write(judul) 
+f.write('\n\n')
+print (('File %s telah dibuat!')%(filename))
+
+print('Ketik "selesai" untuk keluar!')    
+print(30*"=")
+print (judul,'\n')
+
+baris = True
+nomor = 0
+while baris == True: 
+    nomor += 1; num = str(nomor) 
+    penomoran = str(('%s  ')%(num)) 
+    isi = str(input(penomoran)) 
+    if isi == 'selesai' or isi == 'Selesai': 
+        print('\nTelah disimpan.')
+        print(30*"=")
+        baris = False
+    else:
+        f.write(isi) 
+        f.write('\n')
+f.close() 
