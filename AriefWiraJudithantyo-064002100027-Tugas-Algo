@@ -1,0 +1,12 @@
+# Tugas Algo
+# Buatlah sebuah fungsi yang mencetak polynomial (powerbasis) dengan input derajat tertinggi polynomial.
+def power_basis(p):
+    for i in range(p):
+        print(f"x^{p} +", end=" ")
+        p -= 1
+        if p == 1:
+            print("x + 1")
+            break
+        
+n = int(input("Masukkan angka : "))
+power_basis(n)
