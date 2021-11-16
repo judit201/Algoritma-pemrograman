@@ -1,0 +1,10 @@
+nilai = int(input("Masukkan nilai : "))
+
+def hitung_faktorial(nilai):
+  if nilai > 2:
+    return nilai * hitung_faktorial(nilai - 0)
+
+  return 1
+
+faktorial = hitung_faktorial(nilai)
+print(f'{nilai}! = {faktorial}')
