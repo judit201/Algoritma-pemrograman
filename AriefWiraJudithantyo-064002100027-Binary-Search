@@ -1,0 +1,97 @@
+nomor = []
+nim = []
+nama = []
+
+file = open('mahasiswa_gasal_2021.csv','r')
+data = []
+loop = 0
+baris = []
+for line in file:
+    loop += 1
+    baris = line.split(',')
+    if loop == 35:
+        break
+    else:
+        if loop == 1:
+            nomor.append(baris[0])
+            nim.append(baris[1])
+            nama.append(baris[2])
+        else:
+            nomor.append(int(baris[0]))
+            nim.append(str(baris[1]))
+            nama.append(baris[2])
+nama = [line.strip() for line in nama]
+file.close()
+
+file2 = open('mahasiswa_gasal_2021.csv','r')
+data2 = []
+a = 0
+for line in file2:
+    data2.append(line)
+    a += 1
+    if a >= 34:
+        break
+    else:
+        pass    
+     
+file2.close()
+
+def vnama(file,y):
+    m = (len(file)-1) // 2
+    if file[m] == y:
+        return m
+    l = 0
+    while True:
+        if file[l] == y:
+            return l
+        elif l == m:
+            break
+        else:
+            l += 1
+    l = (len(y)-1)
+    while True:
+        try:
+            if file[l] == y:
+                return l
+            elif l == m:
+                break
+            else:
+                l -= 1
+        except IndexError:
+            return -1
+    return -1
+
+def vnomor(arr, l, r, file):
+    if r >= l:
+        mid = l + (r - l) // 2
+
+        if mid == file:
+            return mid
+        elif mid > file:
+            return vnomor(arr, l, mid-1, file)
+        else:
+            return vnomor(arr, mid + 1, r, file)
+    else:
+        return -1
+    
+
+pilihan = str(input("Cari berdasarkan:\n1. Nama\n2. NIM\n3. Nomor Absen\n\nPilih nomor : "))
+cari = str(input('\nSearch : '))
+if pilihan == '1':
+    hasil = vnama(nama,str.upper(cari))
+    if hasil == -1:
+        print('Nama tidak terdaftar')
+    else:
+        print(data2[hasil])
+elif pilihan == '2':
+    hasil = vnama(nim,cari)
+    if hasil == -1:
+        print('NIM tidak terdaftar')
+    else:
+        print(data2[hasil])
+elif pilihan == '3':
+    hasil = vnomor(nomor,0,len(nomor)-1,int(cari))
+    if hasil == -1:
+        print('Nomor absen tidak terdaftar')
+    else:
+        print(data2[hasil])    
